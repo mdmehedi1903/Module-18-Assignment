@@ -1,0 +1,7 @@
+HOST = "Localhost" 
+DATABASE_NAME = "Assignment-18"
+DATABASE = "mongodb://localhost:27017" 
+RUNNING_PORT = 5000
+
+MONGODB_USER_NAME = 
+MONGODB_USER_PASSWORD = 
