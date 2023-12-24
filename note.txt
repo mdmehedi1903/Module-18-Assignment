@@ -1,4 +1,4 @@
-HOST = "Localhost" 
+HOST = "Localhost" (Optional: // To indicate it's mongodb atlas or localhost)
 DATABASE_NAME = "Assignment-18"
 DATABASE = "mongodb://localhost:27017" 
 RUNNING_PORT = 5000
