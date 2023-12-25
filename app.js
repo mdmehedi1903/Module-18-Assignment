@@ -2,7 +2,6 @@
 const express = require('express');
 const router = require('./src/routes/api');
 const app = new express();
-const cookieParser = require('cookie-parser')
 
 // Security Variable Configuration
 const dotenv = require('dotenv');
@@ -10,6 +9,7 @@ dotenv.config({path:'./.env'});
 
 // Security Middleware Lib Import
 const rateLimit = require('express-rate-limit');
+const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
@@ -23,10 +23,11 @@ app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
 
-// Body Parser & Cookie Implement
-app.use(cookieParser())
+// Body & Cookie Parser Implement
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
 
 // Request Rate Limit
 const limiter = rateLimit({
@@ -40,21 +41,22 @@ app.use(limiter);
 // Database Lib Import
 const mongoose = require('mongoose'); 
 
-const HOST = process.env.HOST;
-const DATABASE_NAME = process.env.DATABASE_NAME; 
-const DATABASE = `${process.env.DATABASE}/${DATABASE_NAME}`; 
+// MongoDB Connection
+/* Atlas URI
+/ const URI = `mongodb+srv://${process.env.MONGODB_USER_NAME}:${process.env.MONGODB_USER_PASSWORD}@cluster0.fsp0qs4.mongodb.net/Your-Database-Name?retryWrites=true&w=majority`;*/
 
+const DATABASE = process.env.DATABASE; 
 mongoose
   .connect(DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     autoIndex: true,
   })
-  .then(() => console.log(`DB Connected at ${HOST}: ${DATABASE_NAME}`))
+  .then(() => console.log("DB Connected at Localhost: MERN ECOMMERCE"))
   .catch((err) => {
     console.error(err);
   });
-
+ 
 
 // Routing Implement
 app.use("/api/v1", router)

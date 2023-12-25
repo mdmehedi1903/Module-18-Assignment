@@ -3,12 +3,12 @@ const nodemailer = require('nodemailer');
 const SendEmailUtility= async (EmailTo, EmailText, EmailSubject) => {
 
     let transporter = nodemailer.createTransport({
-        host: 'mail.noormultipleshop.com',
+        host: 'mail.adbiyastravel.com',
         port: 25,
         secure: false,
         auth: {
-            user: "info@noormultipleshop.com",
-            pass: 'fb+gU)M20tx^'
+            user: "info@adbiyastravel.com",
+            pass: 'MAVg6Br?i_$n'
         },tls: {
             rejectUnauthorized: false
         },
@@ -16,7 +16,7 @@ const SendEmailUtility= async (EmailTo, EmailText, EmailSubject) => {
 
 
     let mailOptions = {
-        from: 'ToDo List Application <info@noormultipleshop.com>',
+        from: 'MERN ECOMMERCE Site <info@adbiyastravel.com>',
         to: EmailTo,
         subject: EmailSubject,
         text: EmailText
